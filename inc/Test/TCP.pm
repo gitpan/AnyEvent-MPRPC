@@ -3,18 +3,19 @@ package Test::TCP;
 use strict;
 use warnings;
 use 5.00800;
-our $VERSION = '0.05';
+our $VERSION = '0.11';
 use base qw/Exporter/;
 use IO::Socket::INET;
-use Params::Validate ':all';
 use Test::SharedFork;
+use Test::More ();
+use Config;
+use POSIX;
 
 our @EXPORT = qw/ empty_port test_tcp wait_port /;
 
 sub empty_port {
     my $port = shift || 10000;
     $port = 19000 unless $port =~ /^[0-9]+$/ && $port < 19000;
-    $port += int(rand(100));
 
     while ( $port++ < 20000 ) {
         my $sock = IO::Socket::INET->new(
@@ -30,29 +31,38 @@ sub empty_port {
 }
 
 sub test_tcp {
-    my %args = validate(@_, {
-        client => CODEREF,
-        server => CODEREF,
-        port   => {
-            type => SCALAR,
-            default => empty_port(),
-        },
-    });
-
-    my $port = $args{port};
+    my %args = @_;
+    for my $k (qw/client server/) {
+        die "missing madatory parameter $k" unless exists $args{$k};
+    }
+    my $port = $args{port} || empty_port();
 
     if ( my $pid = Test::SharedFork->fork() ) {
         # parent.
         wait_port($port);
 
-        $args{client}->($port);
+        eval {
+            $args{client}->($port, $pid);
+        };
+        my $err = $@;
 
         kill TERM => $pid;
         waitpid( $pid, 0 );
+        if (WIFSIGNALED($?)) {
+            my $signame = (split(' ', $Config{sig_name}))[WTERMSIG($?)];
+            if ($signame =~ /^(ABRT|PIPE)$/) {
+                Test::More::diag("your server received SIG$signame");
+            }
+        }
+
+        if ($err) {
+            die $err; # rethrow after cleanup.
+        }
     }
     elsif ( $pid == 0 ) {
         # child
         $args{server}->($port);
+        exit;
     }
     else {
         die "fork failed: $!";
@@ -92,4 +102,4 @@ __END__
 
 =encoding utf8
 
-#line 172
+#line 188

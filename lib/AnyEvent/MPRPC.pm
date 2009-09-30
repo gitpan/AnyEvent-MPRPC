@@ -2,7 +2,7 @@ package AnyEvent::MPRPC;
 
 use strict;
 use warnings;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 use AnyEvent::MPRPC::Server;
 use AnyEvent::MPRPC::Client;
 use base 'Exporter';
@@ -21,7 +21,7 @@ sub mprpc_client($$) { ## no critic
 sub mprpc_server($$) { ## no critic
     my ($address, $port) = @_;
 
-    AnyEvent::MRPPC::Server->new(
+    AnyEvent::MPRPC::Server->new(
         address => $address,
         port    => $port,
     );
