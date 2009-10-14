@@ -5,8 +5,8 @@ author:
 build_requires:
   ExtUtils::MakeMaker: 6.42
   Test::More: 0
-  Test::SharedFork: 0
-  Test::TCP: 0
+  Test::SharedFork: 0.05
+  Test::TCP: 0.11
 configure_requires:
   ExtUtils::MakeMaker: 6.42
 distribution_type: module
@@ -22,9 +22,10 @@ no_index:
     - t
     - xt
 requires:
-  AnyEvent: 0
-  Data::MessagePack: 0
+  Any::Moose: 0.1
+  AnyEvent: 5.201
+  Data::MessagePack: 0.08
   Filter::Util::Call: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.03
+version: 0.04
