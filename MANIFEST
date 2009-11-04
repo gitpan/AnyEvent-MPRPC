@@ -20,6 +20,9 @@ inc/Test/Builder.pm
 inc/Test/Builder/Module.pm
 inc/Test/More.pm
 inc/Test/SharedFork.pm
+inc/Test/SharedFork/Array.pm
+inc/Test/SharedFork/Scalar.pm
+inc/Test/SharedFork/Store.pm
 inc/Test/TCP.pm
 lib/AnyEvent/MessagePack.pm
 lib/AnyEvent/MPRPC.pm
