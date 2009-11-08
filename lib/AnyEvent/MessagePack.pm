@@ -29,6 +29,7 @@ use AnyEvent::Handle;
                     $unpacker->reset;
 
                     $buffer = substr($buffer, $nread);
+                    $nread = 0;
                     $succeeded++;
                     next if length($buffer) != 0;
                 }
@@ -63,6 +64,10 @@ AnyEvent::MessagePack - MessagePack stream serializer/deserializer for AnyEvent
 =head1 DESCRIPTION
 
 AE::MessagePack is MessagePack stream serializer/deserializer for AnyEvent.
+
+=head1 THANKS TO
+
+kazeburo++
 
 =head1 SEE ALSO
 
