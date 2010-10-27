@@ -21,8 +21,8 @@ no_index:
 requires:
   Any::Moose: 0.13
   AnyEvent: 5.261
-  Data::MessagePack: 0.25
+  Data::MessagePack: 0.34
   perl: 5.8.0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.08
+version: 0.09

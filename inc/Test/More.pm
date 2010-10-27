@@ -1,7 +1,7 @@
 #line 1
 package Test::More;
 
-use 5.008001;
+use 5.006;
 use strict;
 use warnings;
 
@@ -18,7 +18,7 @@ sub _carp {
     return warn @_, " at $file line $line\n";
 }
 
-our $VERSION = '2.00_01';
+our $VERSION = '0.97_01';
 $VERSION = eval $VERSION;    ## no critic (BuiltinFunctions::ProhibitStringyEval)
 
 use Test::Builder::Module;
