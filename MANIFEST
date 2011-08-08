@@ -33,6 +33,7 @@ t/00_compile.t
 t/01_handle.t
 t/02_connect.t
 t/03_client.t
+t/04_devided_packed.t
 xt/01_podspell.t
 xt/02_perlcritic.t
 xt/03_pod.t
