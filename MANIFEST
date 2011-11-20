@@ -29,4 +29,6 @@ t/04_devided_packed.t
 xt/01_podspell.t
 xt/02_perlcritic.t
 xt/03_pod.t
-xt/perlcriticrc
+xt/04_minimum_version.t
+xt/05_cpan_meta.t
+xt/06_meta_author.t
