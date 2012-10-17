@@ -33,8 +33,14 @@ test_tcp(
         );
         is $cv->recv(), 'connected', "connected";
         my $ret = $client->call('sum' => [qw/1 2 3/])->recv;
-        is $ret, 6;
+        is $ret, 6, 'pass params as ArrayRef';
+
+        $ret = $client->call('sum' => (1..10))->recv;
+        is $ret, 55, 'pass params as Array';
+
+        $ret = $client->call('sum' => 1)->recv;
+        is $ret, 1, 'pass one param';
+
         done_testing;
     },
 );
-
