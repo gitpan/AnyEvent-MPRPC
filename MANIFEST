@@ -11,7 +11,6 @@ inc/Module/Install/Makefile.pm
 inc/Module/Install/Metadata.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
-lib/AnyEvent/MessagePack.pm
 lib/AnyEvent/MPRPC.pm
 lib/AnyEvent/MPRPC/Client.pm
 lib/AnyEvent/MPRPC/CondVar.pm
@@ -22,12 +21,8 @@ MANIFEST			This list of files
 META.yml
 README
 t/00_compile.t
-t/01_handle.t
-t/01_handle_error.t
 t/02_connect.t
 t/03_client.t
-t/04_devided_packed.t
-t/05_RT74518-read_state.t
 xt/01_podspell.t
 xt/02_perlcritic.t
 xt/03_pod.t
